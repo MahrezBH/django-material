@@ -1,0 +1,17 @@
+{% load i18n admin_urls %}  
+
+<div class="right-align">
+    {% if show_delete_link %}
+    {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+        <a href="{% add_preserved_filters delete_url %}" class="deletelink waves-effect waves-light btn red white-text">{% trans "Delete" %}</a>
+    {% endif %}
+    {% if show_save_and_add_another %}
+        <input type="submit" value="{% trans 'Save and add another' %}" class="waves-effect waves-light btn white-text" name="_addanother" />
+    {% endif %}
+    {% if show_save_and_continue %}
+        <input type="submit" value="{% trans 'Save and continue editing' %}" class="waves-effect waves-light btn white-text" name="_continue" />
+    {% endif %}
+    {% if not hide_save %}
+        <button type="submit" class="waves-effect waves-light btn white-text">{% trans 'Save' %}</button>
+    {% endif %}
+</div>
