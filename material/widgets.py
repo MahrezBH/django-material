@@ -1,7 +1,8 @@
 import datetime
 
 from django.conf import settings
-from django.utils import formats, six
+from django.utils import formats
+import six
 from django.forms.widgets import Widget
 from django.utils.encoding import force_str
 

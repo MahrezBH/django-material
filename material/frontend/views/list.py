@@ -13,7 +13,8 @@ from django.urls import reverse
 from django.db.models.query import QuerySet
 from django.forms.forms import pretty_name
 from django.http import JsonResponse
-from django.utils import formats, six, timezone
+from django.utils import formats, timezone
+import six
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_text
 from django.utils.html import format_html
