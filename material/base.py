@@ -5,7 +5,7 @@ import warnings
 from functools import partial
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template, select_template
-from django.utils import six
+import six
 from django.utils.encoding import smart_str
 
 

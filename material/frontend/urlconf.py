@@ -7,7 +7,7 @@ except:
 
 from django.urls import  URLResolver, Resolver404
 from django.http.request import QueryDict
-from django.utils import six
+import six
 
 
 class ModuleMatchName(str):
