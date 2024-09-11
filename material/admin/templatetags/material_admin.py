@@ -8,7 +8,8 @@ from django.contrib.admin.utils import get_fields_from_path
 from django.urls import reverse, NoReverseMatch
 from django.conf import settings
 from django.db import models
-from django.utils import formats, six
+from django.utils import formats
+import six
 from django.utils.dates import MONTHS
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
