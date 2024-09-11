@@ -3,7 +3,7 @@
 import inspect
 import functools
 
-from django.utils import six
+import six
 from django.utils.html import conditional_escape
 
 
