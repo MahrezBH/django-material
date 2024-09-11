@@ -132,8 +132,11 @@ class Row(LayoutNode):
 
     def __getattr__(self, name):
         _, container_size = name.split('_')
-        container_size = int(container_size)
-
+        try:
+            container_size = int(container_size)
+        except:
+            container_size = 1
+            
         def elements_iterator():
             elements_span = sum(
                 element.span_columns for element in self.elements
