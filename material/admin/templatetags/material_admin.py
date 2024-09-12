@@ -319,18 +319,23 @@ def admin_related_field_urls(bound_field):
     rel_widget.widget.choices = rel_widget.choices
     # Get information about a constraint on the field
     limitations = bound_field.field.get_limit_choices_to()
-    for k, v in limitations.items():
-        # TODO: Do not work if there is many limiation on the same model field...
+    # Iterate over a copy of the dictionary's keys to avoid runtime errors
+    for k in list(limitations.keys()):
+        v = limitations[k]
+        # Do not work if there are many limitations on the same model field
         if "__" in k:
-            limitation_field_name, limitation_query = k.split("__")[0], k[k.find("__")+2:]
-            limitation_field = getattr(bound_field.field.queryset.model, limitation_field_name)
-            if limitation_field is None:
-                continue  # This should never happend
-            limitation_model = limitation_field.get_queryset().model
+            limitation_field_name, limitation_query = k.split("__")[0], k[k.find("__") + 2:]
+            limitation_field = getattr(bound_field.field.queryset.model, limitation_field_name, None)
 
+            if limitation_field is None:
+                continue  # This should never happen
+
+            limitation_model = limitation_field.get_queryset().model
             limitation = limitation_model.objects.values('id').get(**{limitation_query: v})
+            
+            # Modify the original dictionary safely
             del limitations[k]
-            limitations[k.split("__")[0]] = limitation["id"]
+            limitations[limitation_field_name] = limitation["id"]
 
     url_params = '&'.join("%s=%s" % param for param in [
         (TO_FIELD_VAR, rel_widget.rel.get_related_field().name),
