@@ -168,10 +168,6 @@ def paginator_number(cl, i):
     if hasattr(i, '__proxy__'):
         i = str(i)
 
-    # Debugging information
-    print(f"Type of i: {type(i)}")
-    print(f"Value of i: {i}")
-
     # Handle pagination links
     if i == 'prev':
         if cl.page_num > 1:
